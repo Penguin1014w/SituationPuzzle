@@ -10,7 +10,6 @@ function App() {
   const [guess, setGuess] = useState(''); // 用户输入的猜测
   const [attempts, setAttempts] = useState(0); // 猜测次数
   const [gameOver, setGameOver] = useState(false); // 游戏是否结束
-  const [message, setMessage] = useState(''); // 显示给用户的消息
   const [loading, setLoading] = useState(true); // 加载状态
   const [chatHistory, setChatHistory] = useState([]); // 聊天历史记录
   const [scrollPosition, setScrollPosition] = useState(0); // 谜面列表滚动位置
@@ -38,15 +37,14 @@ function App() {
             setSelectedRiddle(updatedRiddle);
           }
         }
-        setMessage('');
       } catch (error) {
-        setMessage('获取谜面失败，请检查后端服务是否运行');
+        console.error('获取谜面失败，请检查后端服务是否运行', error);
       } finally {
         setLoading(false);
       }
     };
     fetchRiddles();
-  }, [lang]);
+  }, [lang, selectedRiddle]);
 
   // 处理谜面选择
   const handleRiddleSelect = (riddle) => {
@@ -61,7 +59,6 @@ function App() {
     setGuess('');
     setAttempts(0);
     setGameOver(false);
-    setMessage('');
     setChatHistory([]);
     setShowAnswer(false); // 重置显示谜底状态
   };
@@ -71,7 +68,7 @@ function App() {
     e.preventDefault();
     if (attempts >= 5) {
       setGameOver(true);
-      setMessage(lang === 'CH' ? '游戏结束！你已经用完所有猜测次数。' : 'Game Over! You have used all your attempts.');
+      console.log(lang === 'CH' ? '游戏结束！你已经用完所有猜测次数。' : 'Game Over! You have used all your attempts.');
       return;
     }
     setChatHistory(prev => [...prev, { role: 'user', content: guess }]);
@@ -115,10 +112,9 @@ function App() {
           aiReply = lang === 'CH' ? '发生错误：未知的答案状态' : 'Error: Unknown answer status';
       }
       setChatHistory(prev => [...prev, { role: 'ai', content: aiReply }]);
-      setMessage(''); // 清空消息，不再显示重复内容
       setGuess('');
     } catch (error) {
-      setMessage(`发生错误：${error.message}`);
+      console.error('发生错误：', error.message);
       setChatHistory(prev => [...prev, { role: 'ai', content: `发生错误：${error.message}` }]);
     }
   };
