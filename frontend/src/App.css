@@ -1,0 +1,521 @@
+* {
+  font-family: 'STHeiti', 'Microsoft Yahei', cursive, sans-serif;
+}
+
+/* 全局应用样式 */
+.App {
+  /* text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px; */
+
+  text-align: center;
+  max-width: 90%;  /* 设为百分比 */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.home-banner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* 应用头部样式 */
+.App-header {
+  background-color: transparent;
+  min-height: 8vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(8px + 2vmin);
+  color: #282c34;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 谜面容器样式 */
+.riddle-container {
+  text-align: center;
+  max-width: 80%;  /* 设为百分比 */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 40px;
+  height: 40%;
+}
+
+/* 谜面列表样式 */
+.riddle-list {
+  display: flex;
+  overflow-x: hidden;
+  gap: 40px;
+  padding: 40px 0;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  flex: 1;
+  margin: 0 50px;
+}
+
+.riddle-list::-webkit-scrollbar {
+  display: none;
+}
+
+.riddle-item {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.riddle-item:hover {
+  transform: scale(1.02);
+}
+
+
+/* 谜面按钮样式 */
+.riddle-button {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  font-size: 0.8em;
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  border: 2px solid #282c34;
+  border-radius: 0; /* 去掉圆角 */
+  box-shadow: 0 4px 16px rgba(53, 122, 189, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  word-break: break-word;
+  margin: 0;
+}
+
+/* 谜面按钮悬停效果 */
+.riddle-button:hover {
+  /* background-color: #c7c6c0;
+  transform: scale(1.05); */
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #282c34;
+}
+
+/* 选中的谜面按钮样式 */
+.riddle-button.selected {
+  background-color: transparent;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #282c34;
+  border: 2.5px solid #282c34;
+}
+
+/* 滚动按钮样式 */
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #282c34;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+}
+
+.scroll-button:hover {
+  background-color: transparent;
+  transform: scale(1.05) translate(-50%, -50%);
+}
+
+/* 左侧滚动按钮位置 */
+.scroll-button.left {
+  top: 60%;
+  left: 10%;
+}
+
+/* 右侧滚动按钮位置 */
+.scroll-button.right {
+  top: 60%;
+  right: 10%;
+}
+
+/* 右上角语言切换按钮 */
+.lang-menu-btn {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: background 0.2s;
+  font-weight: bold;
+  color: #282c34;
+  font-size: 0.8em;
+}
+.lang-menu-btn:hover {
+  background: rgba(40,44,52,0.15);
+}
+.lang-menu-bar {
+  width: 24px;
+  height: 10px;
+  background: #282c34;
+  margin: 3px 0;
+  border-radius: 2px;
+  display: block;
+  transition: background 0.2s;
+}
+
+
+/* 游戏容器样式  游戏界面--------------------------------------------------------*/ 
+.game-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: transparent;
+  padding: 30px;
+}
+/* 也是游戏页面 */
+form {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 300px;
+}
+
+/* 这是返回button */
+button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #282c34;
+  border: 2px solid #282c34;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+
+.message {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #e8f5e9;
+}
+
+/* body {
+  background: rgba(255, 255, 255, 0.5);
+} */
+
+/* body {
+  background: url('/pics/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+} */
+
+/* 聊天历史记录样式 */
+.draft-chat-history {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 8px;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 居中所有消息 */
+}
+
+/* 用户消息样式 */
+.draft-user {
+  background-color: #f5f5f5;
+  border: 2px solid #282c34;
+  align-self: flex-end; /* 用户消息靠右 */
+}
+
+/* AI消息样式 */
+.draft-ai {
+  background-color: transparent;
+  border: 2px solid #282c34;
+  align-self: flex-start; /* AI消息靠左 */
+}
+
+/* 消息框通用样式 */
+.draft-box {
+  padding: 10px 18px;
+  margin: 5px 0;
+  border-radius: 8px;
+  max-width: 65%;
+  width: fit-content;      /* 让宽度自适应内容 */
+  min-width: 60px;
+  word-break: break-word;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* 输入框样式 */
+.draft-input {
+  border: 2px solid #282c34;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1.2em;
+  background: #fafafa;
+  font-family: inherit;
+  width: fit-content;
+  min-width: 30%;
+  max-width: 60%;
+  flex: 1 1 auto;
+}
+
+
+/* 按钮样式 提交按钮*/
+.draft-btn {
+  background-color: #282c34;
+  color: #fafafa;
+  border: solid 2px #282c34;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s;
+}
+/* 这个也是提交 */
+.draft-btn:hover {
+  /* background-color: #282c34; */
+  transform: scale(1.02);
+  /* box-shadow: 0 0 15px #282c34; */
+}
+
+.draft-form {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  justify-content: center; /* 居中输入区域 */
+  width: 100%;
+  gap: 10px;
+}
+
+.message {
+  color: #bfa76f;
+  font-size: 1em;
+  margin-top: 8px;
+}
+
+
+
+
+.difficulty {
+  margin-top: 10px;
+  color: #ffd700;
+  /* text-shadow:rgba(175, 166, 166, 0.5) 1px 0 10px; */
+  font-size: 1.6em;
+  letter-spacing: 2px;
+  direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* 显示谜底按钮 */
+.show-answer-btn {
+  /* position: 10% 60%; */
+  margin-right: 3%;
+  background-color: transparent;
+  color: #282c34;
+  border: solid 2px #282c34;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s;
+}
+
+/* .show-answer-btn:hover {
+  background-color: #45a049;
+} */
+
+/* 谜底显示框 */
+.answer-box {
+  background-color: #f8f9fa;
+  border: 2px solid #282828;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;      /* 上下20px，左右自动居中 */
+  text-align: left;       /* 你可以改成 center 如果想让文字也居中 */
+  max-width: 80%;
+  width: 100%;     /* 宽度自适应内容 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* 内容居中 */
+}
+
+.answer-box h3 {
+  color: #282c34;
+  margin-bottom: 10px;
+}
+
+.answer-box p {
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .riddle-container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .riddle-button {
+    width: 150px;
+    height: 150px;
+    font-size: 1rem;
+  }
+
+  .scroll-button {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .riddle-button {
+    width: 120px;
+    height: 120px;
+    font-size: 0.9rem;
+  }
+
+  .riddle-list {
+    gap: 10px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .lang-menu-btn {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+  }
+  .lang-menu-bar {
+    width: 18px;
+    height: 2px;
+  }
+}
+
+
+
+/* .back-btn {
+  background-color: #f5f5f5;
+  color: #282c34;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  margin-bottom: 16px;
+}
+.back-btn:hover {
+  background-color: transparent;
+  transform: scale(1.05);
+}
+ */
+
+.rules-box {
+  max-width: 60%;           /* 固定最大宽度为400px */
+  margin: 5px auto 0px auto;
+  padding: 14px 20px;         /* 缩小内边距 */
+  background: #fafafa;
+  border: 2px solid #282c34;
+  box-shadow: 0 2px 12px rgba(40,44,52,0.08);
+  text-align: left;
+  font-size: 1em;             /* 恢复正常字号 */
+  color: #222;
+}
+.rules-box h2 {
+  margin-top: 0;
+  color: #282c34;
+  font-size: 1.1em;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 18px 0 10px 0;
+  color: #888;
+  font-size: 0.6em;
+  background: transparent;
+  letter-spacing: 0.5px;
+  margin-bottom: 2%;
+}
+.footer a {
+  color: #282c34;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.footer a:hover {
+  color: #0078d7;
+}
