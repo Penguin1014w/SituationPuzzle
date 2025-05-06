@@ -174,7 +174,7 @@ function App() {
                 riddles.map((riddle, idx) => (
                   <div
                     key={riddle.id}
-                    className={`riddle-button${scrollPosition / riddleCardWidth === idx ? ' selected' : ''}`}
+                    className={`riddle-button${Math.round(scrollPosition / riddleCardWidth) === idx ? ' selected' : ''}`}
                     style={{minWidth: '300px', maxWidth: '320px', height: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', cursor: 'pointer'}}
                     onClick={() => handleRiddleSelect(riddle)}
                   >
