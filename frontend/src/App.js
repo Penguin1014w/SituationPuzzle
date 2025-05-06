@@ -145,7 +145,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>海龟汤 SITUATION PUZZLE</h1>
+        <h1>Turtle Yes or No海龟汤</h1>
         <button className="lang-menu-btn" onClick={toggleLang} title="切换语言">
           {lang}
         </button>
