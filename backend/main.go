@@ -75,7 +75,7 @@ func main() {
 
 	// 配置CORS
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:3000"}
+	config.AllowAllOrigins = true
 	config.AllowMethods = []string{"GET", "POST", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Type"}
 	r.Use(cors.New(config))
