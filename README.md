@@ -1,6 +1,6 @@
 # 海龟汤游戏
 
-一个使用Go和React开发的海龟汤游戏，集成了ChatGPT API来验证答案。
+一个使用Go和React开发的海龟汤游戏，集成了DEEPSEEK来验证答案。
 
 ## 功能特点
 
@@ -65,3 +65,28 @@ npm start
 - 确保已设置正确的OpenAI API密钥
 - 后端服务器默认运行在8080端口
 - 前端开发服务器默认运行在3000端口 
+
+@media (max-width: 768px) {
+  .riddle-list {
+    flex-direction: column;
+    gap: 20px;
+    margin: 0;
+    padding: 10px 0;
+    align-items: center;
+  }
+  .riddle-container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 5px;
+  }
+  .riddle-button {
+    width: 90vw;
+    min-width: 0;
+    max-width: 100vw;
+    height: auto;
+    font-size: 1.1em;
+  }
+  .scroll-button {
+    display: none;
+  }
+} 
