@@ -19,6 +19,7 @@ function App() {
 
   // 组件加载时获取谜面数据
   useEffect(() => {
+    console.log('useEffect triggered', { lang, selectedRiddle });
     if (selectedRiddle !== null) return; // 只有在未选中谜面时才请求
     const fetchRiddles = async () => {
       try {
@@ -27,9 +28,11 @@ function App() {
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         setRiddles(data);
+        console.log('setRiddles finished', data);
       } catch (error) {
         console.error('获取谜面失败，请检查后端服务是否运行', error);
       } finally {
+        console.log('setLoading will be set to false');
         setLoading(false);
       }
     };
