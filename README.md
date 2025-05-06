@@ -10,15 +10,15 @@ A situation puzzle (lateral thinking puzzle) game built with Go and React, integ
 
 - Chinese Home Page
   
-  ![sample](./sample.png)
+  ![sample](frontend/public/pics/sample.png)
 
 - English Home Page
   
-  ![sample2](./sample2.png)
+  ![sample2](frontend/public/pics/sample2.png)
 
 - Game Play Interface
   
-  ![sample3](./sample3.png)
+  ![sample3](frontend/public/pics/sample3.png)
 
 ## Features
 
