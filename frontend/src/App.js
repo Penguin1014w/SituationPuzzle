@@ -19,16 +19,13 @@ function App() {
 
   // 组件加载时获取谜面数据
   useEffect(() => {
+    if (selectedRiddle !== null) return; // 只有在未选中谜面时才请求
     const fetchRiddles = async () => {
       try {
         setLoading(true);
-        console.log('请求谜面接口:', `https://situationpuzzle.onrender.com/api/riddles?lang=${lang}`);
         const response = await fetch(`https://situationpuzzle.onrender.com/api/riddles?lang=${lang}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
-        console.log('获取到的谜题数据:', data);
         setRiddles(data);
       } catch (error) {
         console.error('获取谜面失败，请检查后端服务是否运行', error);
@@ -37,7 +34,7 @@ function App() {
       }
     };
     fetchRiddles();
-  }, [lang]);
+  }, [lang, selectedRiddle]);
 
   // 处理谜面选择
   const handleRiddleSelect = (riddle) => {
