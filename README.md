@@ -1,92 +1,85 @@
-# 海龟汤游戏
+# SituationPuzzle海龟汤
 
-一个使用Go和React开发的海龟汤游戏，集成了DEEPSEEK来验证答案。
+A situation puzzle (lateral thinking puzzle) game built with Go and React, integrated with DEEPSEEK for answer validation.
 
-## 功能特点
+## Live Demo
 
-- 预设多个海龟汤谜面
-- 用户可以选择谜面进行猜测
-- 使用ChatGPT API验证答案
-- 限制猜测次数为5次
-- 简洁美观的用户界面
+👉 [Visit the Website](https://situationpuzzle.pages.dev/)
 
-## 技术栈
+## Sample Screenshots
 
-- 后端：Go
-- 前端：React
-- API：OpenAI ChatGPT
+- Chinese Home Page
+  
+  ![sample](./sample.png)
 
-## 安装和运行
+- English Home Page
+  
+  ![sample2](./sample2.png)
 
-### 后端
+- Game Play Interface
+  
+  ![sample3](./sample3.png)
 
-1. 进入backend目录：
+## Features
+
+- Multiple preset situation puzzles
+- Users can select a puzzle and make guesses
+- Uses ChatGPT API for answer validation
+- 5 attempts per puzzle
+- Clean and beautiful user interface
+
+## Tech Stack
+
+- Backend: Go
+- Frontend: React
+- API: OpenAI ChatGPT (via DEEPSEEK)
+
+## Installation & Run
+
+### Backend
+
+1. Enter the backend directory:
 ```bash
 cd backend
 ```
 
-2. 设置环境变量：
+2. Set environment variable:
 ```bash
-export OPENAI_API_KEY=你的OpenAI API密钥
+export OPENAI_API_KEY=your_openai_api_key
 ```
 
-3. 运行后端服务器：
+3. Run the backend server:
 ```bash
 go run main.go chatgpt.go
 ```
 
-### 前端
+### Frontend
 
-1. 进入frontend目录：
+1. Enter the frontend directory:
 ```bash
 cd frontend
 ```
 
-2. 安装依赖：
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. 启动开发服务器：
+3. Start the development server:
 ```bash
 npm start
 ```
 
-## 使用说明
+## Usage
 
-1. 在首页选择想要猜测的谜面
-2. 输入你的答案
-3. 系统会使用ChatGPT验证你的答案是否正确
-4. 你有5次猜测机会
-5. 猜对或用完猜测次数后可以返回选择其他谜面
+1. Select a puzzle on the home page
+2. Enter your guess or question
+3. The system will use DeepSeek to validate your answer
+4. You have 5 attempts per puzzle
+5. After solving or using all attempts, you can return to select another puzzle
 
-## 注意事项
+## Notes
 
-- 确保已设置正确的OpenAI API密钥
-- 后端服务器默认运行在8080端口
-- 前端开发服务器默认运行在3000端口 
-
-@media (max-width: 768px) {
-  .riddle-list {
-    flex-direction: column;
-    gap: 20px;
-    margin: 0;
-    padding: 10px 0;
-    align-items: center;
-  }
-  .riddle-container {
-    flex-direction: column;
-    gap: 10px;
-    padding: 0 5px;
-  }
-  .riddle-button {
-    width: 90vw;
-    min-width: 0;
-    max-width: 100vw;
-    height: auto;
-    font-size: 1.1em;
-  }
-  .scroll-button {
-    display: none;
-  }
-} 
+- Make sure to set the correct OpenAI API key
+- Backend server runs on port 8080 by default
+- Frontend development server runs on port 3000 by default 
