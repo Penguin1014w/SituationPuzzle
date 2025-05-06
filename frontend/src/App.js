@@ -30,13 +30,6 @@ function App() {
         const data = await response.json();
         console.log('获取到的谜题数据:', data);
         setRiddles(data);
-        // 如果已经选择了谜题，更新其内容
-        if (selectedRiddle) {
-          const updatedRiddle = data.find(r => r.id === selectedRiddle.id);
-          if (updatedRiddle) {
-            setSelectedRiddle(updatedRiddle);
-          }
-        }
       } catch (error) {
         console.error('获取谜面失败，请检查后端服务是否运行', error);
       } finally {
