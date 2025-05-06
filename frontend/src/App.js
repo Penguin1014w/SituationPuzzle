@@ -44,7 +44,7 @@ function App() {
       }
     };
     fetchRiddles();
-  }, [lang, selectedRiddle]);
+  }, [lang]);
 
   // 处理谜面选择
   const handleRiddleSelect = (riddle) => {
