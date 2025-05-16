@@ -6,7 +6,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   font-family: 'STHeiti', 'Microsoft Yahei', cursive, sans-serif;
 }
 
-/* 全局应用样式 */
+/* global application styles */ 
 .App {
   /* text-align: center;
   max-width: 1200px;
@@ -14,7 +14,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   padding: 20px; */
 
   text-align: center;
-  max-width: 90%;  /* 设为百分比 */
+  max-width: 90%;  /* set to percentage */
   margin: 0 auto;
   padding: 20px;
 }
@@ -37,7 +37,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   }
 }
 
-/* 应用头部样式 */
+/* application header styles */
 .App-header {
   background-color: transparent;
   min-height: 8vh;
@@ -62,10 +62,10 @@ body, .App, .rules-box, .game-container, .answer-box {
   }
 }
 
-/* 谜面容器样式 */
+/* riddle container styles */
 .riddle-container {
   text-align: center;
-  max-width: 80%;  /* 设为百分比 */
+  max-width: 80%;  /* set to percentage */
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -74,7 +74,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   height: 40%;
 }
 
-/* 谜面列表样式 */
+/* riddle list styles */
 .riddle-list {
   display: flex;
   overflow-x: hidden;
@@ -104,7 +104,7 @@ body, .App, .rules-box, .game-container, .answer-box {
 }
 
 
-/* 谜面按钮样式 */
+/* riddle button styles */
 .riddle-button {
   flex: 0 0 auto;
   width: 120px;
@@ -127,7 +127,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   margin: 0;
 }
 
-/* 谜面按钮悬停效果 */
+/* riddle button hover effect */
 .riddle-button:hover {
   /* background-color: #c7c6c0;
   transform: scale(1.05); */
@@ -135,7 +135,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   box-shadow: 0 0 15px #282c34;
 }
 
-/* 选中的谜面按钮样式 */
+/* selected riddle button styles */
 .riddle-button.selected {
   background-color: transparent;
   transform: scale(1.05);
@@ -143,7 +143,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   border: 2.5px solid #282c34;
 }
 
-/* 滚动按钮样式 */
+/* scroll button styles */
 .scroll-button {
   position: absolute;
   top: 50%;
@@ -169,19 +169,19 @@ body, .App, .rules-box, .game-container, .answer-box {
   transform: scale(1.05) translate(-50%, -50%);
 }
 
-/* 左侧滚动按钮位置 */
+/* left scroll button position */
 .scroll-button.left {
   top: 60%;
   left: 10%;
 }
 
-/* 右侧滚动按钮位置 */
+/* right scroll button position */
 .scroll-button.right {
   top: 60%;
   right: 10%;
 }
 
-/* 右上角语言切换按钮 */
+/* top right language switch button */
 .lang-menu-btn {
   position: absolute;
   top: 8%;
@@ -215,14 +215,14 @@ body, .App, .rules-box, .game-container, .answer-box {
 }
 
 
-/* 游戏容器样式  游戏界面--------------------------------------------------------*/ 
+/* game container styles--------------------------------------------------------*/ 
 .game-container {
   max-width: 700px;
   margin: 0 auto;
   background-color: transparent;
   padding: 30px;
 }
-/* 也是游戏页面 */
+/* also the game page */
 form {
   margin-top: 20px;
   display: flex;
@@ -237,7 +237,7 @@ input {
   width: 300px;
 }
 
-/* 这是返回button */
+/* return button */
 button {
   padding: 10px 20px;
   background-color: transparent;
@@ -268,7 +268,7 @@ button:hover {
   background-size: cover;
 } */
 
-/* 聊天历史记录样式 */
+/* chat history styles */
 .draft-chat-history {
   margin: 20px 0;
   padding: 20px;
@@ -279,37 +279,37 @@ button:hover {
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 居中所有消息 */
+  align-items: center; /* center all messages */
 }
 
-/* 用户消息样式 */
+/* user message styles */
 .draft-user {
   background-color: #f5f5f5;
   border: 2px solid #282c34;
-  align-self: flex-end; /* 用户消息靠右 */
+  align-self: flex-end; /* user message on the right */
 }
 
-/* AI消息样式 */
+/* AI message styles */
 .draft-ai {
   background-color: transparent;
   border: 2px solid #282c34;
-  align-self: flex-start; /* AI消息靠左 */
+  align-self: flex-start; /* AI message on the left */
 }
 
-/* 消息框通用样式 */
+/* common message box styles */
 .draft-box {
   padding: 10px 18px;
   margin: 5px 0;
   border-radius: 8px;
   max-width: 65%;
-  width: fit-content;      /* 让宽度自适应内容 */
+  width: fit-content;      /* let the width adapt to the content */
   min-width: 60px;
   word-break: break-word;
   box-sizing: border-box;
   text-align: left;
 }
 
-/* 输入框样式 */
+/* input box styles */
 .draft-input {
   border: 2px solid #282c34;
   border-radius: 8px;
@@ -324,7 +324,7 @@ button:hover {
 }
 
 
-/* 按钮样式 提交按钮*/
+/* button styles  submit button*/
 .draft-btn {
   background-color: #282c34;
   color: #fafafa;
@@ -335,7 +335,7 @@ button:hover {
   font-size: 1.1em;
   transition: background-color 0.3s;
 }
-/* 这个也是提交 */
+/* this is also the submit button */
 .draft-btn:hover {
   /* background-color: #282c34; */
   transform: scale(1.02);
@@ -346,7 +346,7 @@ button:hover {
   display: flex;
   align-items: center;
   margin-top: 8px;
-  justify-content: center; /* 居中输入区域 */
+  justify-content: center; /* center the input area */
   width: 100%;
   gap: 10px;
 }
@@ -372,7 +372,7 @@ button:hover {
   margin-top: 20px;
 }
 
-/* 显示谜底按钮 */
+/* show answer button */
 .show-answer-btn {
   /* position: 10% 60%; */
   margin-right: 3%;
@@ -390,19 +390,19 @@ button:hover {
   background-color: #45a049;
 } */
 
-/* 谜底显示框 */
+/* answer box */
 .answer-box {
   background-color: #f8f9fa;
   border: 2px solid #282828;
   border-radius: 8px;
   padding: 20px;
-  margin: 20px auto;      /* 上下20px，左右自动居中 */
-  text-align: left;       /* 你可以改成 center 如果想让文字也居中 */
+  margin: 20px auto;     
+  text-align: left;       
   max-width: 80%;
-  width: 100%;     /* 宽度自适应内容 */
+  width: 100%;    
   display: flex;
   flex-direction: column;
-  align-items: center;    /* 内容居中 */
+  align-items: center; 
 }
 
 .answer-box h3 {
@@ -511,14 +511,14 @@ img, button {
  */
 
 .rules-box {
-  max-width: 60%;           /* 固定最大宽度为400px */
+  max-width: 60%;           /* fixed max width to 400px */
   margin: 5px auto 0px auto;
-  padding: 14px 20px;         /* 缩小内边距 */
+  padding: 14px 20px;         /* shrink the padding */
   background: #fafafa;
   border: 2px solid #282c34;
   box-shadow: 0 2px 12px rgba(40,44,52,0.08);
   text-align: left;
-  font-size: 1em;             /* 恢复正常字号 */
+  font-size: 1em;             /* restore the normal font size */
   color: #222;
 }
 .rules-box h2 {

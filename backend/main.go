@@ -25,12 +25,14 @@ type Riddle struct {
 }
 
 // 全局变量存储谜面数据
-var riddles []Riddle
+// var riddles []Riddle
+var riddles map[int]Riddle
 
 // 初始化函数，在程序启动时加载CSV数据
 func init() {
 	godotenv.Load() // 加载.env文件
 	// 打开CSV文件
+	riddles = make(map[int]Riddle)
 	file, err := os.Open("riddles.csv")
 	if err != nil {
 		log.Fatal(err)
@@ -64,7 +66,8 @@ func init() {
 				AnswerEN:   record[6],
 				Difficulty: difficulty,
 			}
-			riddles = append(riddles, riddle)
+			// riddles = append(riddles, riddle)
+			riddles[id] = riddle
 		}
 	}
 }
@@ -94,12 +97,15 @@ func main() {
 
 			if lang == "CH" {
 				item["title"] = riddle.TitleCH
-				item["content"] = riddle.ContentCH
+				item["content_ch"] = riddle.ContentCH
+				item["content_en"] = riddle.ContentEN
 				item["answer_ch"] = riddle.AnswerCH
 				item["answer_en"] = riddle.AnswerEN
 			} else {
 				item["title"] = riddle.TitleEN
 				item["content"] = riddle.ContentEN
+				item["content_ch"] = riddle.ContentCH
+				item["content_en"] = riddle.ContentEN
 				item["answer_ch"] = riddle.AnswerCH
 				item["answer_en"] = riddle.AnswerEN
 			}
@@ -124,12 +130,17 @@ func main() {
 		}
 
 		// 获取对应的谜面
-		var riddle Riddle
-		for _, r := range riddles {
-			if r.ID == request.RiddleID {
-				riddle = r
-				break
-			}
+		// var riddle Riddle
+		// for _, r := range riddles {
+		// 	if r.ID == request.RiddleID {
+		// 		riddle = r
+		// 		break
+		// 	}
+		// }
+		riddle, exists := riddles[request.RiddleID]
+		if !exists {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Riddle not found"})
+			return
 		}
 
 		// 检查答案
