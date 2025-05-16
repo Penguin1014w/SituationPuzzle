@@ -24,13 +24,13 @@ type Riddle struct {
 	Difficulty int    `json:"difficulty"`
 }
 
-// 全局变量存储谜面数据
+// save the riddles in a map
 // var riddles []Riddle
 var riddles map[int]Riddle
 
-// 初始化函数，在程序启动时加载CSV数据
+// init the riddles
 func init() {
-	godotenv.Load() // 加载.env文件
+	godotenv.Load() // loding .env
 	// 打开CSV文件
 	riddles = make(map[int]Riddle)
 	file, err := os.Open("riddles.csv")
@@ -39,20 +39,20 @@ func init() {
 	}
 	defer file.Close()
 
-	// 创建CSV reader
+	// create a csv reader
 	reader := csv.NewReader(file)
 	records, err := reader.ReadAll()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// 跳过表头，从第二行开始读取数据
+	// skip the header, start from the second row
 	for i, record := range records {
 		if i == 0 {
-			continue // 跳过表头
+			continue // skip the header
 		}
 
-		// 确保行数据完整
+		// ensure the row data is complete
 		if len(record) >= 8 {
 			id, _ := strconv.Atoi(record[0])
 			difficulty, _ := strconv.Atoi(record[7])
@@ -73,21 +73,21 @@ func init() {
 }
 
 func main() {
-	// 创建Gin路由
+	// create a gin router
 	r := gin.Default()
 
-	// 配置CORS
+	// config the cors
 	config := cors.DefaultConfig()
 	config.AllowAllOrigins = true
 	config.AllowMethods = []string{"GET", "POST", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Type"}
 	r.Use(cors.New(config))
 
-	// 获取所有谜面
+	// get all the riddles
 	r.GET("/api/riddles", func(c *gin.Context) {
-		lang := c.DefaultQuery("lang", "CH") // 默认中文
+		lang := c.DefaultQuery("lang", "CH") // default is chinese
 
-		// 根据语言返回对应的数据
+		// return the data according to the language
 		var responseData []map[string]interface{}
 		for _, riddle := range riddles {
 			item := map[string]interface{}{
@@ -95,17 +95,29 @@ func main() {
 				"difficulty": riddle.Difficulty,
 			}
 
+			// if lang == "CH" {
+			// 	item["title"] = riddle.TitleCH
+			// 	item["content_ch"] = riddle.ContentCH
+			// 	item["content_en"] = riddle.ContentEN
+			// 	item["answer_ch"] = riddle.AnswerCH
+			// 	item["answer_en"] = riddle.AnswerEN
+			// } else {
+			// 	item["title"] = riddle.TitleEN
+			// 	item["content"] = riddle.ContentEN
+			// 	item["content_ch"] = riddle.ContentCH
+			// 	item["content_en"] = riddle.ContentEN
+			// 	item["answer_ch"] = riddle.AnswerCH
+			// 	item["answer_en"] = riddle.AnswerEN
+			// }
+
 			if lang == "CH" {
 				item["title"] = riddle.TitleCH
-				item["content_ch"] = riddle.ContentCH
-				item["content_en"] = riddle.ContentEN
+				item["content"] = riddle.ContentCH
 				item["answer_ch"] = riddle.AnswerCH
 				item["answer_en"] = riddle.AnswerEN
 			} else {
 				item["title"] = riddle.TitleEN
 				item["content"] = riddle.ContentEN
-				item["content_ch"] = riddle.ContentCH
-				item["content_en"] = riddle.ContentEN
 				item["answer_ch"] = riddle.AnswerCH
 				item["answer_en"] = riddle.AnswerEN
 			}
@@ -116,7 +128,7 @@ func main() {
 		c.JSON(http.StatusOK, responseData)
 	})
 
-	// 检查答案
+	// check the answer
 	r.POST("/api/check-answer", func(c *gin.Context) {
 		var request struct {
 			RiddleID int    `json:"riddleId"`
@@ -129,7 +141,7 @@ func main() {
 			return
 		}
 
-		// 获取对应的谜面
+		// get the corresponding riddle
 		// var riddle Riddle
 		// for _, r := range riddles {
 		// 	if r.ID == request.RiddleID {
@@ -143,7 +155,7 @@ func main() {
 			return
 		}
 
-		// 检查答案
+		// check the answer
 		status, err := checkAnswerWithChatGPT(riddle, request.Answer, request.Lang)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -152,6 +164,6 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": status})
 	})
 
-	// 启动服务器
+	// start the server
 	r.Run(":8080")
 }
