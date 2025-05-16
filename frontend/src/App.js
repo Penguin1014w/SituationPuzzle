@@ -59,7 +59,7 @@ function App() {
   // 处理用户提交的猜测
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (attempts >= 5) {
+    if (attempts >= 8) {
       setGameOver(true);
       console.log(lang === 'CH' ? '游戏结束！你已经用完所有猜测次数。' : 'Game Over! You have used all your attempts.');
       return;
@@ -98,7 +98,7 @@ function App() {
           break;
         case 'irrelevant':
           aiReply = lang === 'CH' 
-            ? `你的问题与题目无关，请仔细思考谜面中的关键信息。还剩${5 - attempts - 1}次机会。`
+            ? `你的问题与题目无关，请仔细思考谜面中的关键信息。还剩${8 - attempts - 1}次机会。`
             : `Your question is irrelevant to the puzzle. Please think about the key information in the riddle. ${5 - attempts - 1} attempts remaining.`;
           break;
         default:
@@ -132,7 +132,13 @@ function App() {
   // 切换语言
   const toggleLang = () => {
     setLang(lang === 'CH' ? 'EN' : 'CH');
+    setSelectedRiddle(null); // 切换语言时回到谜面选择界面
   };
+
+  function truncateText(text, maxLength = 60) {
+    if (!text) return '';
+    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+  }
 
   // 渲染主界面
   return (
@@ -150,7 +156,7 @@ function App() {
             <p>
               海龟汤是一种情境推理游戏。主持人给出一个离奇的情境，玩家通过提问来还原真相。<br />
               你可以提出任何问题，主持人只会回答"是"、"不是"或"无关"。<br />
-              目标是通过有限的提问，推理出完整的故事真相！你会有5次机会提问。<br />
+              目标是通过有限的提问，推理出完整的故事真相！你会有8次机会提问。<br />
             </p>
           </div>
         ) : (
@@ -159,7 +165,7 @@ function App() {
             <p>
               Situation Puzzle (Lateral Thinking Puzzle) is a reasoning game. The host gives a bizarre scenario, and players ask questions to uncover the truth.<br />
               You can ask any question, and the host will only answer "Yes", "No", or "Irrelevant".<br />
-              The goal is to deduce the full story with limited questions! you have 5 attempts.
+              The goal is to deduce the full story with limited questions! you have 8 attempts.
             </p>
           </div>
         )}
@@ -179,7 +185,8 @@ function App() {
                     onClick={() => handleRiddleSelect(riddle)}
                   >
                     <h3 style={{marginBottom: 10}}>{riddle.title}</h3>
-                    <p style={{fontSize: '1em', color: '#222'}}>{riddle.content}</p>
+                    <p style={{fontSize: '1em', color: '#222'}}>
+                      {truncateText(riddle.content, 50)}</p>
                     <div className="difficulty">
                       {Array(Math.max(1, riddle.difficulty)).fill('⭐').join('')}
                     </div>

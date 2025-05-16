@@ -72,6 +72,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   gap: 20px;
   padding: 0 40px;
   height: 40%;
+  /* background-color: #0055ff; */
 }
 
 /* riddle list styles */
@@ -85,6 +86,7 @@ body, .App, .rules-box, .game-container, .answer-box {
   scrollbar-width: none;
   flex: 1;
   margin: 0 50px;
+  /* background-color: #0055ff; */
 }
 
 .riddle-list::-webkit-scrollbar {
@@ -125,6 +127,8 @@ body, .App, .rules-box, .game-container, .answer-box {
   text-align: center;
   word-break: break-word;
   margin: 0;
+  margin-inline-start: 1%;
+  /* scroll-margin-block: 5%; */
 }
 
 /* riddle button hover effect */

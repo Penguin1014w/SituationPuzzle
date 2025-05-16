@@ -9,24 +9,24 @@ import (
 	"strings"
 )
 
-// DeepSeek API相关常量
+// DeepSeek API related constants
 const (
 	deepseekAPIURL = "https://api.deepseek.com/v1/chat/completions"
 )
 
-// DeepSeek API请求结构体
+// DeepSeek API request struct
 type DeepSeekRequest struct {
 	Model    string    `json:"model"`
 	Messages []Message `json:"messages"`
 }
 
-// 消息结构体
+// message struct
 type Message struct {
 	Role    string `json:"role"`
 	Content string `json:"content"`
 }
 
-// DeepSeek API响应结构体
+// DeepSeek API response struct
 type DeepSeekResponse struct {
 	Choices []struct {
 		Message struct {
@@ -35,9 +35,9 @@ type DeepSeekResponse struct {
 	} `json:"choices"`
 }
 
-// 使用AI检查用户答案
+// use AI to check the user's answer
 func checkAnswerWithChatGPT(riddle Riddle, userAnswer string, lang string) (string, error) {
-	// 首先进行简单的字符串匹配
+	// first do a simple string matching
 	correctAnswer := riddle.AnswerCH
 	content := riddle.ContentCH
 	if lang == "EN" {
@@ -48,7 +48,7 @@ func checkAnswerWithChatGPT(riddle Riddle, userAnswer string, lang string) (stri
 		return "correct", nil
 	}
 
-	// 构建AI提示
+	// build the AI prompt
 	var prompt string
 	if lang == "EN" {
 		prompt = fmt.Sprintf(`This is a lateral thinking puzzle.
@@ -96,7 +96,7 @@ Do not include any other text`, content, correctAnswer, userAnswer)
 不要包含其他文字`, content, correctAnswer, userAnswer)
 	}
 
-	// 构建API请求
+	// build the API request
 	requestBody := DeepSeekRequest{
 		Model: "deepseek-chat",
 		Messages: []Message{
@@ -116,7 +116,7 @@ Do not include any other text`, content, correctAnswer, userAnswer)
 		},
 	}
 
-	// 发送请求到DeepSeek API
+	// send the request to the DeepSeek API
 	jsonData, err := json.Marshal(requestBody)
 	if err != nil {
 		return "", fmt.Errorf("error marshaling request: %v", err)
@@ -141,7 +141,7 @@ Do not include any other text`, content, correctAnswer, userAnswer)
 	}
 	defer resp.Body.Close()
 
-	// 解析API响应
+	// parse the API response
 	var deepseekResp DeepSeekResponse
 	if err := json.NewDecoder(resp.Body).Decode(&deepseekResp); err != nil {
 		return "", fmt.Errorf("error decoding response: %v", err)
@@ -151,7 +151,7 @@ Do not include any other text`, content, correctAnswer, userAnswer)
 		return "", fmt.Errorf("no response from DeepSeek")
 	}
 
-	// 处理AI返回的结果
+	// handle the AI's result
 	result := deepseekResp.Choices[0].Message.Content
 	fmt.Printf("Debug - Riddle: %s\n", content)
 	fmt.Printf("Debug - Correct Answer: %s\n", correctAnswer)
@@ -163,6 +163,6 @@ Do not include any other text`, content, correctAnswer, userAnswer)
 		return cleanedResult, nil
 	}
 
-	// 如果无法确定，默认返回 irrelevant
+	// if cannot determine, default return irrelevant
 	return "irrelevant", nil
 }
