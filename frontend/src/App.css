@@ -364,13 +364,31 @@ button:hover {
 
 
 
+/* .difficulty {
+  margin-top: 10px;
+  color: #ffd700;
+  text-shadow:rgba(230, 226, 226, 0.5) 1px 0 10px; 
+  font-size: 1.8em;
+  font-weight: bold;
+  letter-spacing: 3px;
+  direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+} */
+
 .difficulty {
   margin-top: 10px;
   color: #ffd700;
-  /* text-shadow:rgba(175, 166, 166, 0.5) 1px 0 10px; */
+  text-shadow:rgba(68, 64, 64, 0.5) 1px 0 10px;
   font-size: 1.6em;
-  letter-spacing: 2px;
+  /* letter-spacing: 2px; */
   direction: column;
+  text-shadow:
+  -0.5px -0.5px 0 #ffd700,
+   0.5px -0.5px 0 #ffd700,
+  -0.5px  0.5px 0 #ffd700,
+   0.5px  0.5px 0 #ffd700;
   gap: 16px;
   align-items: center;
   margin-top: 20px;

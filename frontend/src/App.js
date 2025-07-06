@@ -144,7 +144,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Turtle Yes or No海龟汤</h1>
+        <h1>Situation Puzzle</h1>
         <button className="lang-menu-btn" onClick={toggleLang} title="切换语言">
           {lang}
         </button>
@@ -188,7 +188,7 @@ function App() {
                     <p style={{fontSize: '1em', color: '#222'}}>
                       {truncateText(riddle.content, 50)}</p>
                     <div className="difficulty">
-                      {Array(Math.max(1, riddle.difficulty)).fill('⭐').join('')}
+                      {Array(Math.max(1, riddle.difficulty)).fill('★').join('')}
                     </div>
                   </div>
                 ))
@@ -207,7 +207,7 @@ function App() {
             <h2>{selectedRiddle.title}</h2>
             <p>{selectedRiddle.content}</p>
             <div className="difficulty">
-              {Array(Math.max(1, selectedRiddle.difficulty)).fill('⭐').join('')}
+              {Array(Math.max(1, selectedRiddle.difficulty)).fill('★').join('')}
             </div>
             <div className="draft-chat-history">
               {chatHistory.map((msg, idx) => (
