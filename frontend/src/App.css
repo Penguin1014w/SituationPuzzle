@@ -3,7 +3,7 @@ html {
 }
 
 body, .App, .rules-box, .game-container, .answer-box {
-  font-family: 'STHeiti', 'Microsoft Yahei', cursive, sans-serif;
+  font-family: 'STHeiti', 'Microsoft Yahei', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* global application styles */ 
